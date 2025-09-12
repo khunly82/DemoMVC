@@ -1,0 +1,21 @@
+﻿@model MovieResult
+
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>Titre</th>
+            <th>Description</th>
+            <th>Image</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach(Movie movie in Model.Movies)
+        {
+            <tr>
+                <td>@movie.OriginalTitle</td>
+                <td>@movie.Overview</td>
+                <td>@movie.PosterPath</td>
+            </tr>
+        }
+    </tbody>
+</table>

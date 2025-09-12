@@ -1,0 +1,26 @@
+﻿header {
+    height: 70px;
+    background-color: chartreuse;
+    display: flex;
+    align-items: center;
+    nav {
+        margin: 0 1em;
+        ul {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            gap: 1em;
+            list-style: none;
+            li {
+                a {
+                    color: hotpink;
+                    text-decoration: unset;
+                    font-weight: bold;
+                    &:hover {
+                        color: deepskyblue;
+                    }
+                }
+            }
+        }
+    }
+}
