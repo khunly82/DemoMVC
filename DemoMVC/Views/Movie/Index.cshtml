@@ -1,5 +1,19 @@
 ﻿@model MovieResult
 
+@{
+    Pagination pagination = new()
+    {
+        Controller = "movie",
+        Action = "index",
+        CurrentPage = Model.Page,
+        PageMax = 500,
+        Range = 8
+    };
+}
+
+@* on ne pas utiliser <partial name="_Pagination"> car on passe des paramètres*@
+@await Html.PartialAsync("_Pagination", pagination);
+
 <table class="table table-bordered">
     <thead>
         <tr>
@@ -19,3 +33,7 @@
         }
     </tbody>
 </table>
+
+@await Html.PartialAsync("_Pagination", pagination);
+
+
