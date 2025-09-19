@@ -5,7 +5,7 @@ using System.Net.Mail;
 
 namespace DemoMVC.Controllers
 {
-    public class Contact : Controller
+    public class Contact(SmtpClient smtp) : Controller
     {
         public IActionResult Index()
         {
@@ -20,12 +20,6 @@ namespace DemoMVC.Controllers
             message.Subject = "formularie site";
             message.Body = model.Message;
 
-            SmtpClient smtp = new SmtpClient();
-            smtp.Host = "sandbox.smtp.mailtrap.io";
-            smtp.Port = 25;
-            smtp.Credentials = new NetworkCredential("ebb3e8a64c2994", "60530c32436ff2");
-            smtp.DeliveryMethod = SmtpDeliveryMethod.Network;
-            smtp.EnableSsl = true;
 
             try
             {

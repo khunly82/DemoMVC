@@ -1,3 +1,6 @@
+using System.Net;
+using System.Net.Mail;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -16,7 +19,20 @@ builder.Services.AddScoped(_ =>
         .Add("Authorization", "Bearer " + token);
     return client;
 });
-    
+
+builder.Services.AddScoped(_ =>
+{
+    SmtpClient client = new SmtpClient();
+    client.Host = builder.Configuration["Smtp:Host"]!;
+    client.Port = builder.Configuration.GetSection("Smtp:Port").Get<int>();
+    client.Credentials = new NetworkCredential(
+        builder.Configuration["Smtp:Credentials:User"],
+        builder.Configuration["Smtp:Credentials:Password"]);
+    client.DeliveryMethod = SmtpDeliveryMethod.Network;
+    client.EnableSsl = builder.Configuration.GetSection("Smtp:SslEnable").Get<bool>();
+    return client;
+});
+
 // ressource cr�� � chaque demande
 // builder.Services.AddTransient
 
