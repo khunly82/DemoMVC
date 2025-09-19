@@ -11,13 +11,13 @@ builder.Services.AddScoped(_ =>
 {
     HttpClient client = new HttpClient();
     string token = builder.Configuration["API_TOKEN"]
-        ?? throw new Exception("Votre token n'est pas configuré");
+        ?? throw new Exception("Votre token n'est pas configurï¿½");
     client.DefaultRequestHeaders
         .Add("Authorization", "Bearer " + token);
     return client;
 });
     
-// ressource créé à chaque demande
+// ressource crï¿½ï¿½ ï¿½ chaque demande
 // builder.Services.AddTransient
 
 var app = builder.Build();

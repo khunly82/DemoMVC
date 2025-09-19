@@ -10,9 +10,19 @@
     <link rel="stylesheet" href="~/DemoMVC.styles.css" asp-append-version="true" />
 </head>
 <body>
-    
+
+
     <partial name="_Header" />
 
+    @if(TempData["error"] != null)
+    {
+        <p class="text-danger">@TempData["error"]</p>
+    }
+
+    @if (TempData["success"] != null)
+    {
+        <p class="text-success">@TempData["success"]</p>
+    }
     <main role="main">
         @RenderBody()
     </main>
