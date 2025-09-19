@@ -2,7 +2,6 @@
 
 namespace DemoMVC.Models
 {
-    // Root myDeserializedClass = JsonSerializer.Deserialize<Root>(myJsonResponse);
     public class Movie
     {
         [JsonPropertyName("adult")]

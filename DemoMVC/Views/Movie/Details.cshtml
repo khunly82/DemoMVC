@@ -1,0 +1,19 @@
+﻿@model MovieDetailsResult // indication pour l'autocompletion
+
+<div><a asp-action="Index">Retour en arrière</a></div>
+
+<div>
+    <img src="https://image.tmdb.org/t/p/w500/@Model.PosterPath" alt="Alternate Text" />
+
+    <h1>@Model.OriginalTitle</h1>
+
+    <p>@Model.Overview</p>
+
+    <p>Langues</p>
+    <ul>
+    @foreach(var lang in Model.SpokenLanguages)
+    {
+        <li>@lang.Name</li>
+    }
+    </ul>
+</div>
