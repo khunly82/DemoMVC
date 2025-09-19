@@ -1,3 +1,6 @@
+using System.Net;
+using System.Net.Mail;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -11,13 +14,26 @@ builder.Services.AddScoped(_ =>
 {
     HttpClient client = new HttpClient();
     string token = builder.Configuration["API_TOKEN"]
-        ?? throw new Exception("Votre token n'est pas configuré");
+        ?? throw new Exception("Votre token n'est pas configurï¿½");
     client.DefaultRequestHeaders
         .Add("Authorization", "Bearer " + token);
     return client;
 });
-    
-// ressource créé à chaque demande
+
+builder.Services.AddScoped(_ =>
+{
+    SmtpClient client = new SmtpClient();
+    client.Host = builder.Configuration["Smtp:Host"]!;
+    client.Port = builder.Configuration.GetSection("Smtp:Port").Get<int>();
+    client.Credentials = new NetworkCredential(
+        builder.Configuration["Smtp:Credentials:User"],
+        builder.Configuration["Smtp:Credentials:Password"]);
+    client.DeliveryMethod = SmtpDeliveryMethod.Network;
+    client.EnableSsl = builder.Configuration.GetSection("Smtp:SslEnable").Get<bool>();
+    return client;
+});
+
+// ressource crï¿½ï¿½ ï¿½ chaque demande
 // builder.Services.AddTransient
 
 var app = builder.Build();
