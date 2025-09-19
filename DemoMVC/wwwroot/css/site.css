@@ -21,3 +21,13 @@ body {
   display: flex;
   flex-direction: column;
 }
+form {
+    display: flex;
+    flex-direction: column;
+    width: 300px;
+}
+
+.submit {
+    height: 100px;
+    text-wrap: wrap;
+}
