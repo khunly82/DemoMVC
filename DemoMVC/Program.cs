@@ -1,3 +1,6 @@
+using System.Net;
+using System.Net.Mail;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -14,6 +17,21 @@ builder.Services.AddScoped(_ =>
         ?? throw new Exception("Votre token n'est pas configuré");
     client.DefaultRequestHeaders
         .Add("Authorization", "Bearer " + token);
+    return client;
+});
+
+builder.Services.AddScoped(_ =>
+{
+    SmtpClient client = new();
+    client.Host = "sandbox.smtp.mailtrap.io";
+    client.Port = 25;
+    client.Credentials = new NetworkCredential
+    {
+        UserName = "d50f59b2cc8cfb",
+        Password = "a71635274f4a9b"
+    };
+    client.EnableSsl = true;
+    client.Timeout = 5000;
     return client;
 });
     
