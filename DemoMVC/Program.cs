@@ -1,3 +1,5 @@
+using DemoMVC;
+using Microsoft.EntityFrameworkCore;
 using System.Net;
 using System.Net.Mail;
 
@@ -34,6 +36,14 @@ builder.Services.AddScoped(_ =>
     client.Timeout = 5000;
     return client;
 });
+
+builder.Services.AddDbContext<StockContext>(o =>
+{
+    // je veux me connecter à SqlServer
+    // nécessite le package Microsoft.EntityFrameWorkCore.SqlServer
+    o.UseSqlServer(builder.Configuration.GetConnectionString("Default"));
+});
+
     
 // ressource créé à chaque demande
 // builder.Services.AddTransient
