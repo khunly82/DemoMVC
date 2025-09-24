@@ -105,7 +105,10 @@ foreach (var product in p)
 
 
 // 1. select lastName, firstName FROM customer
-// 2. selectionner le ref, nom, prenom du client
-    // dont la réference est C005
+// 2. selectionner la ref, nom, prenom du client
+// dont la réference est C005
 // 3. selectionner le nom, le prenom, l'email en majuscule
-    // des clients dont le nom commence par "a"
+// des clients dont le  le nom ou le prenom  commence par "a"
+// 4. selectionner le nom, le prenom, l'email
+// des 2 premiers clients triés
+// par ordre decroissant sur le nom dont le nom ou le prenom commence par "a"
