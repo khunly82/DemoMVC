@@ -102,3 +102,10 @@ foreach (var product in p)
     Console.WriteLine(product.Prix);
     Console.WriteLine("---------------------");
 }
+
+
+// 1. select lastName, firstName FROM customer
+// 2. selectionner le ref, nom, prenom du client
+    // dont la réference est C005
+// 3. selectionner le nom, le prenom, l'email en majuscule
+    // des clients dont le nom commence par "a"
