@@ -1,0 +1,33 @@
+﻿@model List<CustomerIndexViewModel>
+
+
+<form class="mb-3">
+    <div class="d-flex">
+        <input class="form-control me-3" type="text" name="Search" value="@ViewBag.Search"/>
+        <button class="btn btn-dark btn-sm">Go</button>
+    </div>
+</form>
+
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>Référence</th>
+            <th>Nom</th>
+            <th>Prénom</th>
+            <th>Nombre de commandes</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach(var item in Model)
+        {
+            <tr>
+                <td>@item.Ref</td>
+                <td>@item.LastName</td>
+                <td>@item.FirstName</td>
+                <td>@item.NbOrders</td>
+                <td></td>
+            </tr>
+        }
+    </tbody>
+</table>
