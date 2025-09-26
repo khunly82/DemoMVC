@@ -9,6 +9,7 @@ namespace DemoMVC.Controllers
     public class ContactController(SmtpClient client) : Controller
     {
         // afficher le formulaire de contact
+        [HttpGet]
         public IActionResult Index()
         {
             return View();
