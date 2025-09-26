@@ -1,4 +1,5 @@
 using DemoMVC;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.EntityFrameworkCore;
 using System.Net;
 using System.Net.Mail;
@@ -44,6 +45,14 @@ builder.Services.AddDbContext<StockContext>(o =>
     o.UseSqlServer(builder.Configuration.GetConnectionString("Default"));
 });
 
+builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+    .AddCookie(o => {
+        o.LoginPath = "/login";
+        o.LogoutPath = "/logout";
+        o.AccessDeniedPath = "/login";
+        o.ExpireTimeSpan = TimeSpan.FromHours(1);
+    });
+
     
 // ressource créé à chaque demande
 // builder.Services.AddTransient
@@ -58,6 +67,8 @@ if (!app.Environment.IsDevelopment())
 app.UseStaticFiles();
 
 app.UseRouting();
+
+app.UseAuthentication();
 
 app.UseAuthorization();
 

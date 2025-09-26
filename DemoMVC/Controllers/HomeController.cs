@@ -16,6 +16,7 @@ namespace DemoMVC.Controllers
 
         public IActionResult Index()
         {
+            var u = User;
             return View();
         }
 

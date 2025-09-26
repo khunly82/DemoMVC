@@ -1,6 +1,7 @@
 ﻿
 using DemoMVC.Entities;
 using DemoMVC.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -10,6 +11,7 @@ namespace DemoMVC.Controllers
     public class CustomerController(StockContext _db) : Controller
     {
         [HttpGet]
+        [Authorize] // je dois etre connecter peut importe le role
         public IActionResult Index([FromQuery]string? search)
         {
             ViewBag.Search = search; 
@@ -31,6 +33,7 @@ namespace DemoMVC.Controllers
         }
 
         [HttpGet]
+        [Authorize(Roles = "admin")] // je dois etre admin
         public IActionResult Create()
         {
             return View();
@@ -38,6 +41,7 @@ namespace DemoMVC.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "admin")] // je dois etre admin
         public IActionResult Create(CustomerForm form)
         {
             // valider les données
@@ -78,6 +82,7 @@ namespace DemoMVC.Controllers
 
 
         [HttpGet]
+        [Authorize(Roles = "admin")] // je dois etre admin
         public IActionResult Delete(string id)
         {
             Customer? c = _db.Customers.Find(id);
@@ -96,6 +101,7 @@ namespace DemoMVC.Controllers
         }
 
         [HttpGet]
+        [Authorize(Roles = "admin,seller")] // je dois etre admin ou vendeur
         public IActionResult Edit(string id)
         {
             Customer? customer = _db.Customers.Find(id);
@@ -115,6 +121,7 @@ namespace DemoMVC.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = "admin,seller")]
         public IActionResult Edit(string id, CustomerForm form)
         {
             Customer? customer = _db.Customers.Find(id);

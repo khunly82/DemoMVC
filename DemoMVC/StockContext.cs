@@ -1,5 +1,6 @@
 ﻿using DemoMVC.Configurations;
 using DemoMVC.Entities;
+using DemoMVC.Utils;
 using Microsoft.EntityFrameworkCore;
 
 namespace DemoMVC
@@ -137,6 +138,13 @@ namespace DemoMVC
     new OrderLine { Id = 34, OrderRef = "O010", ProductRef = "P008", Price = 139.00m, Quantity = 1 },
     new OrderLine { Id = 35, OrderRef = "O010", ProductRef = "P009", Price = 14.99m, Quantity = 2 },
     new OrderLine { Id = 36, OrderRef = "O010", ProductRef = "P012", Price = 39.00m, Quantity = 1 }]);
+
+
+            modelBuilder.Entity<User>().HasData([
+                new User { Id = 1, Username = "Khun", Password = PasswordUtils.Hash("khun", "550e8400-e29b-41d4-a716-446655440000"), UserRole = User.Role.Admin },
+                new User { Id = 2, Username = "Yass", Password = PasswordUtils.Hash("yass", "3f2504e0-4f89-11d3-9a0c-0305e82c3301"), UserRole = User.Role.Seller },
+                new User { Id = 3, Username = "Laur", Password = PasswordUtils.Hash("laur", "9a3b1c6d-7f9e-4a2f-b8e7-123456789abc"), UserRole = User.Role.Restocker },
+            ]);
 #endif
         }
     }

@@ -1,6 +1,9 @@
 ﻿@model List<CustomerIndexViewModel>
 
+@if(User.IsInRole("admin"))
+{    
 <a class="btn btn-dark mb-3" asp-controller="Customer" asp-action="Create"><i class="fa fa-user-plus"></i></a>
+}
 
 <form class="mb-3" method="get">
     <div class="d-flex">
@@ -28,13 +31,18 @@
                 <td>@item.FirstName</td>
                 <td>@item.NbOrders</td>
                 <td>
-                    <a class="btn btn-sm btn-danger" asp-action="Delete" asp-route-id="@item.Ref">
-                        <i class="fa fa-trash"></i>
-                    </a>
-
-                    <a class="btn btn-sm btn-success" asp-action="Edit" asp-route-id="@item.Ref">
-                        <i class="fa fa-pencil-square"></i>
-                    </a>
+                    @if(User.IsInRole("admin"))
+                    {     
+                        <a class="btn btn-sm btn-danger" asp-action="Delete" asp-route-id="@item.Ref">
+                            <i class="fa fa-trash"></i>
+                        </a>
+                    }
+                    @if(User.IsInRole("admin") || User.IsInRole("seller"))
+                    {
+                        <a class="btn btn-sm btn-success" asp-action="Edit" asp-route-id="@item.Ref">
+                            <i class="fa fa-pencil-square"></i>
+                        </a>
+                    }
                 </td>
             </tr>
         }

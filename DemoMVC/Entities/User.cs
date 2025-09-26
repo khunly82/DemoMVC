@@ -7,7 +7,7 @@ namespace DemoMVC.Entities
         [Key]
         public int Id { get; set; }
         public string Username { get; set; } = null!;
-        public byte[] Password { get; set; } = null!;
+        public string Password { get; set; } = null!;
         public Role UserRole { get; set; }
 
         public enum Role

@@ -21,11 +21,32 @@
                     <i class="fa fa-envelope"></i> Formulaire
                 </a>
             </li>
+            @if(User.Identity?.IsAuthenticated ?? false)
+            {
+                <li>
+                    <a asp-controller="Customer" asp-action="Index">
+                        <i class="fa fa-user"></i> Les Clients
+                    </a>
+                </li>
+            }
+
             <li>
-                <a asp-controller="Customer" asp-action="Index">
-                    <i class="fa fa-user"></i> Les Clients
-                </a>
+                @if (User.Identity?.IsAuthenticated ?? false)
+                {
+                    <a asp-controller="Auth" asp-action="Logout">
+                        <i class="fa fa-power-off"></i> Se Déconnecter
+                    </a>
+                }
+                else
+                {
+                    <a asp-controller="Auth" asp-action="Login">
+                        <i class="fa fa-sign-in"></i> Se Connecter
+                    </a>
+                }
             </li>
+
+            
+
         </ul>
     </nav>
 </header>
